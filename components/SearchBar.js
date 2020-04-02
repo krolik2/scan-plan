@@ -28,6 +28,14 @@ export default function SearchBar() {
   const [filteredData, setFilteredData] = useState(data);
   const [qrCode, setQrCode] = useState('');
   const [imgVisible, setImgVisible] = useState(false)
+  // const [baskets, setBaskets] = useState([
+  //   {key: 1, name: '1'},
+  //   {key: 2, name: '2'},
+  //   {key: 3, name: '3'},
+  //   {key: 4, name: '4'},
+  //   {key: 5, name: '5'},
+  //   {key: 6, name: '6'}
+  // ]);
 
   const searchFilter = userInput => {
     const codesData = data.filter(item => {
@@ -39,7 +47,7 @@ export default function SearchBar() {
     setFilteredData(codesData);
   };
 
-  const pressHandler = url => {
+  const pressHandler = (url, name) => {
     setImgVisible(true);
     setQrCode(url);
   }
@@ -62,10 +70,11 @@ export default function SearchBar() {
       </View>
       <View style={styles.list}>
         <FlatList
+          keyExtractor={(item) => item.key}
           ItemSeparatorComponent={renderSeparator}
           data={filteredData}
           renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => pressHandler(item.url)}>
+            <TouchableOpacity onPress={() => pressHandler(item.url, item.name)}>
               <Text style={styles.listItem}>{item.name}</Text>
             </TouchableOpacity>
           )}
@@ -74,6 +83,15 @@ export default function SearchBar() {
       <View style={styles.qrContainer}>
         {imgVisible ? (<Image style={styles.qr} source={qrCode}></Image>) : (null)}
       </View>
+      {/* <View style={styles.controlsContainer}>
+        {baskets.map(el => {
+          return (
+            <View key={el.key}>
+              <Text style={styles.item}>{el.name}</Text>
+            </View>
+          )
+        })}
+        </View> */}
     </>
   );
 }
@@ -106,10 +124,10 @@ const styles = StyleSheet.create({
     paddingLeft: 30,
     paddingRight: 30,
     flexDirection: 'row',
-    justifyContent: "center",
+    justifyContent: 'center',
   },
   listItem: {
-    textAlign: 'center',
+    textAlign: 'left',
     fontFamily: "OpenSans-Regular",
     fontSize: 20,
     color: '#fff',
@@ -118,5 +136,17 @@ const styles = StyleSheet.create({
     marginTop: 10,
     flex: 1,
     alignItems: 'center'
-  }
+  },
+  // controlsContainer: {
+  //   flexDirection: 'row',
+  //   alignItems: 'center',
+  //   justifyContent: 'space-around'
+  // },
+  // item: {
+  //   width: 40,
+  //   height: 40,
+  //   backgroundColor: 'orange',
+  //   marginBottom: 5,
+  //   fontSize: 15
+  // }
 });

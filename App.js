@@ -1,57 +1,78 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Button, FlatList, Keyboard, TouchableWithoutFeedback } from "react-native";
+import "react-native-gesture-handler";
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  View,
+  Keyboard,
+  TouchableWithoutFeedback
+} from "react-native";
 import * as Font from "expo-font";
+import { AppLoading } from "expo";
+import { NavigationContainer } from "@react-navigation/native";
 
-import Header from "./components/Header";
-import SearchBar from "./components/SearchBar";
+import HomeStack from './routes/HomeStack';
+import MenuDrawer from "./routes/MenuDrawer";
+// import Header from "./components/Header";
+// import SearchBar from "./components/SearchBar";
+
+const cacheFonts = () => Font.loadAsync({
+    "OpenSans-ExtraBold": require("./assets/fonts/OpenSans-ExtraBold.ttf"),
+    "OpenSans-Regular": require("./assets/fonts/OpenSans-Regular.ttf")
+  });
 
 export default function App() {
-  const [isFontLoaded, setFont] = useState(false);
+  const [fontsLoaded, setFontsLoaded] = useState(false);
 
-  useEffect(() => {
-    const cacheAssets = async () => {
-      await Font.loadAsync({
-        "OpenSans-ExtraBold": require("./assets/fonts/OpenSans-ExtraBold.ttf"),
-        "OpenSans-Regular": require("./assets/fonts/OpenSans-Regular.ttf")
-      });
-      setFont(true);
-    };
-    cacheAssets();
-    console.log('hook run');
-  }, [isFontLoaded]);
-
-  if (isFontLoaded) {
+  if (fontsLoaded) {
     return (
-      <TouchableWithoutFeedback onPress={() => {Keyboard.dismiss()}}>
-      <View style={styles.container}>
-        <Header />
-        <View style={styles.body}>
-          <SearchBar />
-        </View>
-      </View>
-      </TouchableWithoutFeedback>
+      <NavigationContainer>
+        {/* <HomeStack /> */}
+        <MenuDrawer />
+      </NavigationContainer>
     );
   } else {
     return (
-      <View>
-        <Text>Loading app...</Text>
-      </View>
+      <AppLoading
+        startAsync={cacheFonts}
+        onFinish={() => setFontsLoaded(true)}
+      />
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#4C5454',
-  },
-  body: {
-    flex: 1,
-    paddingTop: 30
-  },
-  flex: 1,
-  controlsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around'
-  }
-});
+
+  // if (fontsLoaded) {
+  //   return (
+  //     <TouchableWithoutFeedback
+  //       onPress={() => {
+  //         Keyboard.dismiss();
+  //       }}
+  //     >
+  //       <View style={styles.container}>
+  //         <Header />
+  //         <View style={styles.body}>
+  //           <SearchBar />
+  //         </View>
+  //       </View>
+  //     </TouchableWithoutFeedback>
+  //   );
+  // } else {
+  //   return (
+  //     <AppLoading
+  //       startAsync={cacheFonts}
+  //       onFinish={() => setFontsLoaded(true)}
+  //     />
+  //   );
+  // }
+
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: "#4C5454"
+//   },
+//   body: {
+//     flex: 1,
+//     paddingTop: 30
+//   }
+// });
