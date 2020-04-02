@@ -1,34 +1,54 @@
 import React, { useState } from "react";
 import {
-  StyleSheet,
   View,
   Keyboard,
   Text,
   TouchableWithoutFeedback,
-  Button,
   FlatList,
   TouchableOpacity
 } from "react-native";
 
 import { globalStyles } from "../styles/main";
 import data from "../data";
+import SearchBar from "../components/SearchBar";
+
+// const renderSeparator = () => {
+//   return (
+//     <View
+//       style={{
+//         height: 1,
+//         width: "100%",
+//         backgroundColor: "#CED0CE"
+//       }}
+//     />
+//   );
+// };
 
 export default function Home({ navigation }) {
+  const [filteredData, setFilteredData] = useState(data);
+
   return (
-    <View style={globalStyles.container}>
-      <View style={globalStyles.list}>
-        <FlatList
-          keyExtractor={item => item.key}
-          data={data}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              onPress={() => navigation.navigate("Location Details", item)}
-            >
-              <Text style={globalStyles.listItem}>{item.name}</Text>
-            </TouchableOpacity>
-          )}
-        />
+    <TouchableWithoutFeedback
+      onPress={() => {
+        Keyboard.dismiss();
+      }}
+    >
+      <View style={globalStyles.container}>
+        <SearchBar data={data} setFilteredData={setFilteredData} />
+        <View style={globalStyles.list}>
+          <FlatList
+            keyExtractor={item => item.key}
+            data={filteredData}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                onPress={() => navigation.navigate("Location Details", item)}
+              >
+                <Text style={globalStyles.listItem}>{item.name}</Text>
+              </TouchableOpacity>
+            )}
+          />
+        </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 }

@@ -1,42 +1,8 @@
-import React, { useState } from "react";
-import {
-  StyleSheet,
-  View,
-  TextInput,
-  FlatList,
-  Text,
-  TouchableOpacity,
-  Image
-} from "react-native";
+import React from "react";
+import { StyleSheet, View, TextInput } from "react-native";
 import { EvilIcons } from "@expo/vector-icons";
 
-import data from '../data';
-
-const renderSeparator = () => {
-  return (
-    <View
-      style={{
-        height: 1,
-        width: "100%",
-        backgroundColor: "#CED0CE",
-      }}
-    />
-  );
-};
-
-export default function SearchBar() {
-  const [filteredData, setFilteredData] = useState(data);
-  const [qrCode, setQrCode] = useState('');
-  const [imgVisible, setImgVisible] = useState(false)
-  // const [baskets, setBaskets] = useState([
-  //   {key: 1, name: '1'},
-  //   {key: 2, name: '2'},
-  //   {key: 3, name: '3'},
-  //   {key: 4, name: '4'},
-  //   {key: 5, name: '5'},
-  //   {key: 6, name: '6'}
-  // ]);
-
+export default function SearchBar({ data, setFilteredData }) {
   const searchFilter = userInput => {
     const codesData = data.filter(item => {
       const itemData = `${item.name.toUpperCase()}`;
@@ -47,52 +13,20 @@ export default function SearchBar() {
     setFilteredData(codesData);
   };
 
-  const pressHandler = (url, name) => {
-    setImgVisible(true);
-    setQrCode(url);
-  }
-
   return (
-    <>
-      <View style={styles.searchBar}>
-        <TextInput
-          style={styles.input}
-          placeholder="Search for location..."
-          onChangeText={userInput => searchFilter(userInput)}
-          onFocus={() => setImgVisible(false)}
-        />
-        <EvilIcons
-          name="search"
-          size={35}
-          color="#fff"
-          style={styles.searchIcon}
-        />
-      </View>
-      <View style={styles.list}>
-        <FlatList
-          keyExtractor={(item) => item.key}
-          ItemSeparatorComponent={renderSeparator}
-          data={filteredData}
-          renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => pressHandler(item.url, item.name)}>
-              <Text style={styles.listItem}>{item.name}</Text>
-            </TouchableOpacity>
-          )}
-        />
-      </View>
-      <View style={styles.qrContainer}>
-        {imgVisible ? (<Image style={styles.qr} source={qrCode}></Image>) : (null)}
-      </View>
-      {/* <View style={styles.controlsContainer}>
-        {baskets.map(el => {
-          return (
-            <View key={el.key}>
-              <Text style={styles.item}>{el.name}</Text>
-            </View>
-          )
-        })}
-        </View> */}
-    </>
+    <View style={styles.searchBar}>
+      <TextInput
+        style={styles.input}
+        placeholder="Search for location..."
+        onChangeText={userInput => searchFilter(userInput)}
+      />
+      <EvilIcons
+        name="search"
+        size={35}
+        color="#fff"
+        style={styles.searchIcon}
+      />
+    </View>
   );
 }
 
@@ -114,39 +48,9 @@ const styles = StyleSheet.create({
     margin: 10,
     width: 200,
     paddingLeft: 5,
-    color: '#fff'
+    color: "#fff"
   },
   searchIcon: {
     paddingRight: 10
-  },
-  list: {
-    flex: 1,
-    paddingLeft: 30,
-    paddingRight: 30,
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  listItem: {
-    textAlign: 'left',
-    fontFamily: "OpenSans-Regular",
-    fontSize: 20,
-    color: '#fff',
-  },
-  qrContainer: {
-    marginTop: 10,
-    flex: 1,
-    alignItems: 'center'
-  },
-  // controlsContainer: {
-  //   flexDirection: 'row',
-  //   alignItems: 'center',
-  //   justifyContent: 'space-around'
-  // },
-  // item: {
-  //   width: 40,
-  //   height: 40,
-  //   backgroundColor: 'orange',
-  //   marginBottom: 5,
-  //   fontSize: 15
-  // }
+  }
 });

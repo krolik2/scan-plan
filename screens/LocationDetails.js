@@ -5,7 +5,8 @@ import {
   Keyboard,
   Text,
   TouchableWithoutFeedback,
-  Image
+  Image,
+  Button
 } from "react-native";
 import { globalStyles } from "../styles/main";
 
@@ -19,6 +20,9 @@ export default function LocationDetails({ route, navigation }) {
       </View>
       <View style={globalStyles.qrContainer}>
         <Image source={url}></Image>
+      </View>
+      <View>
+        <Button title='assign location to cart'/>
       </View>
     </View>
   );
