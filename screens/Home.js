@@ -11,6 +11,7 @@ import {
 import { globalStyles } from "../styles/main";
 import data from "../data";
 import SearchBar from "../components/SearchBar";
+import Cart from '../components/Cart'
 
 // const renderSeparator = () => {
 //   return (
@@ -26,6 +27,7 @@ import SearchBar from "../components/SearchBar";
 
 export default function Home({ navigation }) {
   const [filteredData, setFilteredData] = useState(data);
+  
 
   return (
     <TouchableWithoutFeedback
@@ -37,7 +39,6 @@ export default function Home({ navigation }) {
         <SearchBar data={data} setFilteredData={setFilteredData} />
         <View style={globalStyles.list}>
           <FlatList
-            keyExtractor={item => item.key}
             data={filteredData}
             renderItem={({ item }) => (
               <TouchableOpacity
@@ -48,6 +49,7 @@ export default function Home({ navigation }) {
             )}
           />
         </View>
+        <Cart />
       </View>
     </TouchableWithoutFeedback>
   );

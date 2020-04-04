@@ -9,6 +9,7 @@ import {
 import * as Font from "expo-font";
 import { AppLoading } from "expo";
 import { NavigationContainer } from "@react-navigation/native";
+import CartContextProvider from './contexts/CartContext';
 
 import HomeStack from './routes/HomeStack';
 import MenuDrawer from "./routes/MenuDrawer";
@@ -25,10 +26,11 @@ export default function App() {
 
   if (fontsLoaded) {
     return (
+      <CartContextProvider>
       <NavigationContainer>
-        {/* <HomeStack /> */}
         <MenuDrawer />
       </NavigationContainer>
+      </CartContextProvider>
     );
   } else {
     return (

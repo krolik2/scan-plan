@@ -29,6 +29,7 @@ export const globalStyles = StyleSheet.create({
       qrContainer: {
         marginTop: 10,
         flex: 1,
-        alignItems: 'center'
+        alignItems: 'center',
+        marginBottom: 20
       },
 })
