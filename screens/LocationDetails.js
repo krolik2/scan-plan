@@ -15,8 +15,7 @@ import { CartContext } from '../contexts/CartContext';
 export default function LocationDetails({ route, navigation }) {
   const { name } = route.params;
   const { url } = route.params;
-  const { containers, setContainers } = useContext(CartContext)
-  
+  const { containers, setContainers } = useContext(CartContext);
   const [containerId, setContainerId] = useState();
 
   const moveToHomeScreen = () => {

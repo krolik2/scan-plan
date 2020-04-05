@@ -1,35 +1,32 @@
-import React, { useState, useContext } from "react";
-import {
-  StyleSheet,
-  View,
-  TextInput,
-  FlatList,
-  Text,
-  TouchableOpacity,
-  Image
-} from "react-native";
+import React, { useContext } from "react";
+import { StyleSheet, View, Button, Text } from "react-native";
 
+import { CartContext } from "../contexts/CartContext";
 import { globalStyles } from "../styles/main";
-import { FontAwesome } from "@expo/vector-icons";
-
-import { CartContext } from '../contexts/CartContext';
+import CartItem from "../components/CartItem";
 
 export default function Cart() {
-    
-  const { containers, setContainers } = useContext(CartContext)
+  const { containers, setContainers } = useContext(CartContext);
 
-  console.log(containers)
+  const clearCart = () => {
+    setContainers([]);
+  };
 
-  return (
+  return containers.length > 0 ? (
     <View style={globalStyles.container}>
       <View style={styles.cartsContainer}>
-       {containers.map(container => {
-        return( <View style={styles.cart} key={container.id}>
-          <Text style={styles.cartNumber}>{container.id}</Text>
-          <FontAwesome name="shopping-basket" style={styles.cartIcon} />
-          <Text style={styles.cartLocation}>{container.name}</Text>
-        </View>)
+        {containers.map((container) => {
+          return <CartItem container={container} key={container.id} />;
         })}
+      </View>
+      <Button title="clear cart" onPress={() => clearCart()} />
+    </View>
+  ) : (
+    <View style={globalStyles.container}>
+      <View style={styles.cartsContainer}>
+        <Text style={globalStyles.title}>
+          Your cart is empty, add items from the list.
+        </Text>
       </View>
     </View>
   );
@@ -37,28 +34,10 @@ export default function Cart() {
 
 const styles = StyleSheet.create({
   cartsContainer: {
-    marginTop: 10,
+    marginTop: 20,
     flex: 1,
     flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: "space-evenly"
+    justifyContent: "space-evenly",
   },
-  cart: {
-    alignItems: "center",
-    padding: 5
-  },
-  cartIcon: {
-    color: "#fff",
-    fontSize: 45
-  },
-  cartNumber: {
-    fontFamily: "OpenSans-Regular",
-    color: "lime",
-    fontSize: 20
-  },
-  cartLocation: {
-    fontFamily: "OpenSans-Regular",
-    color: "#fff",
-    fontSize: 15
-  }
 });

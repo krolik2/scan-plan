@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "Blank Template",
+    "name": "Scan Plan",
     "slug": "scan-plan",
     "privacy": "public",
     "sdkVersion": "36.0.0",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
+    "android": {
+      "versionCode": 1,
+      "package": "com.krolik2.scanplan"
+    },
+    "platforms": ["ios", "android", "web"],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -20,11 +20,13 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
-    }
+      "supportsTablet": true,
+      "bundleIdentifier": "com.krolik2.scanplan",
+      "buildNumber": "1.0.0"
+    },
+    "description": "My first React Native app.",
+    "githubUrl": "https://github.com/krolik2/scan-plan"
   }
 }
