@@ -29,14 +29,24 @@ export default function LocationDetails({ route, navigation }) {
 
   const isNumberInRange = () => {
     const number = parseInt(containerId);
-    return number > 0 && number <= 6 ? callWhenTrue() : callWhenFalse();
+    return number > 0 && number <= 6 ? checkIfIdTaken() : callWhenFalse();
   };
 
   const getContainerData = () => {
     setContainers([...containers, { name, id: containerId }]);
   };
 
-  const callWhenTrue = () => {
+  const checkIfIdTaken = () => {
+    return containers.some((el) => el.id === containerId)
+      ? Alert.alert(
+          "Container already exists!",
+          `Container with id: ${containerId} has already been added. Please choose different number`,
+          [{ text: "okay", onPress: () => setContainerId(null) }]
+        )
+      : addNewContainer();
+  };
+
+  const addNewContainer = () => {
     getContainerData();
     moveToHomeScreen();
   };
