@@ -7,32 +7,47 @@ import {
   TouchableWithoutFeedback,
   Image,
   Button,
-  TextInput
+  TextInput,
+  Alert,
 } from "react-native";
 import { globalStyles } from "../styles/main";
-import { CartContext } from '../contexts/CartContext';
+import { CartContext } from "../contexts/CartContext";
 
 export default function LocationDetails({ route, navigation }) {
   const { name } = route.params;
   const { url } = route.params;
   const { containers, setContainers } = useContext(CartContext);
-  const [containerId, setContainerId] = useState();
+  const [containerId, setContainerId] = useState("");
 
   const moveToHomeScreen = () => {
     navigation.goBack();
   };
 
-  const getContainerData = () => {
-    setContainers([
-      ...containers,
-      {name, id:containerId}
-    ]);
-  }
+  const numbersOnly = (data) => {
+    return setContainerId(data.replace(/[^0-9]/gi, ""));
+  };
 
-  const callActions = () => {
+  const isNumberInRange = () => {
+    const number = parseInt(containerId);
+    return number > 0 && number <= 6 ? callWhenTrue() : callWhenFalse();
+  };
+
+  const getContainerData = () => {
+    setContainers([...containers, { name, id: containerId }]);
+  };
+
+  const callWhenTrue = () => {
     getContainerData();
     moveToHomeScreen();
-  }
+  };
+
+  const callWhenFalse = () => {
+    Alert.alert(
+      "Incorrect Input!",
+      "Please use numbers only, between 1 and 6.",
+      [{ text: "okay", onPress: () => setContainerId(null) }]
+    );
+  };
 
   return (
     <TouchableWithoutFeedback
@@ -54,7 +69,8 @@ export default function LocationDetails({ route, navigation }) {
               <TextInput
                 style={styles.containerNumberInput}
                 keyboardType="numeric"
-                onChangeText={(id) => setContainerId(id)}
+                onChangeText={(data) => numbersOnly(data)}
+                value={containerId}
               />
             </View>
           </View>
@@ -62,7 +78,7 @@ export default function LocationDetails({ route, navigation }) {
         <View>
           <Button
             title="assign location to container"
-            onPress={() => callActions()}
+            onPress={() => isNumberInRange()}
           />
         </View>
       </View>
@@ -76,19 +92,19 @@ const styles = StyleSheet.create({
     height: 40,
     width: 40,
     marginLeft: 10,
-    alignItems: "center"
+    alignItems: "center",
   },
   containerNumberInput: {
     fontSize: 25,
     fontFamily: "OpenSans-Regular",
-    color: "#fff"
+    color: "#fff",
   },
   containerNumberInputArea: {
     alignItems: "center",
     flexDirection: "row",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   body: {
-    flex: 2
-  }
+    flex: 2,
+  },
 });
