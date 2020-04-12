@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
-import { StyleSheet, View, Button, Text } from "react-native";
+import { StyleSheet, View, Button } from "react-native";
 
 import { CartContext } from "../contexts/CartContext";
 import { globalStyles } from "../styles/main";
 import CartItem from "../components/CartItem";
+import EmptyCart from "./EmptyCart";
 
 export default function Cart() {
   const { containers, setContainers } = useContext(CartContext);
@@ -22,13 +23,7 @@ export default function Cart() {
       <Button title="clear cart" onPress={() => clearCart()} />
     </View>
   ) : (
-    <View style={globalStyles.container}>
-      <View style={styles.cartsContainer}>
-        <Text style={globalStyles.title}>
-          Your cart is empty, add items from the list.
-        </Text>
-      </View>
-    </View>
+    <EmptyCart />
   );
 }
 
