@@ -29,15 +29,21 @@ export default function LocationDetails({ route, navigation }) {
 
   const isNumberInRange = () => {
     const number = parseInt(containerId);
-    return number > 0 && number <= 6 ? checkIfIdTaken() : callWhenFalse();
+    return number > 0 && number <= 6 ? checkIfIdTaken() : numberNotInRange();
+  };
+
+  const ascendingOrder = (a, b) => {
+    return a.id - b.id;
   };
 
   const getContainerData = () => {
-    setContainers([...containers, { name, id: containerId }]);
+    setContainers(
+      [...containers, { name, id: parseInt(containerId) }].sort(ascendingOrder)
+    );
   };
 
   const checkIfIdTaken = () => {
-    return containers.some((el) => el.id === containerId)
+    return containers.some((el) => el.id === parseInt(containerId))
       ? Alert.alert(
           "Container already exists!",
           `Container with id: ${containerId} has already been added. Please choose different number`,
@@ -51,7 +57,7 @@ export default function LocationDetails({ route, navigation }) {
     moveToHomeScreen();
   };
 
-  const callWhenFalse = () => {
+  const numberNotInRange = () => {
     Alert.alert(
       "Incorrect Input!",
       "Please use numbers only, between 1 and 6.",
@@ -74,7 +80,7 @@ export default function LocationDetails({ route, navigation }) {
         </View>
         <View style={styles.body}>
           <View style={styles.containerNumberInputArea}>
-            <Text style={globalStyles.title}>Enter container number:</Text>
+            <Text style={globalStyles.title}>Enter container number (1 - 6):</Text>
             <View style={styles.containerNumber}>
               <TextInput
                 style={styles.containerNumberInput}

@@ -34,7 +34,6 @@ export default function Cart() {
 
 const styles = StyleSheet.create({
   cartsContainer: {
-    marginTop: 20,
     flex: 1,
     flexDirection: "row",
     flexWrap: "wrap",
