@@ -5,52 +5,26 @@ import {
   Text,
   TouchableWithoutFeedback,
   FlatList,
-  TouchableOpacity
+  TouchableOpacity,
+  Image
 } from "react-native";
 
 import { globalStyles } from "../styles/main";
 import data from "../data";
 import SearchBar from "../components/SearchBar";
-import Cart from '../components/Cart'
+import Cart from "../components/Cart";
+import List from "./List";
+import NavigationBar from '../components/NavigationBar'
 
-// const renderSeparator = () => {
-//   return (
-//     <View
-//       style={{
-//         height: 1,
-//         width: "100%",
-//         backgroundColor: "#CED0CE"
-//       }}
-//     />
-//   );
-// };
-
-export default function Home({ navigation }) {
-  const [filteredData, setFilteredData] = useState(data);
-  
-
+export default function Home() {
   return (
-    <TouchableWithoutFeedback
-      onPress={() => {
-        Keyboard.dismiss();
-      }}
-    >
-      <View style={globalStyles.container}>
-        <SearchBar data={data} setFilteredData={setFilteredData} />
-        <View style={globalStyles.list}>
-          <FlatList
-            data={filteredData}
-            renderItem={({ item }) => (
-              <TouchableOpacity
-                onPress={() => navigation.navigate("Location Details", item)}
-              >
-                <Text style={globalStyles.listItem}>{item.name}</Text>
-              </TouchableOpacity>
-            )}
-          />
-        </View>
-        <Cart />
+    <View style={globalStyles.container}>
+      <View style={globalStyles.header}>
+        <Text style={globalStyles.headerText}>Cart</Text>
       </View>
-    </TouchableWithoutFeedback>
+      <Image source={require('../assets/img/cart-img.png')}></Image>
+      <Cart />
+      <NavigationBar />
+    </View>
   );
 }

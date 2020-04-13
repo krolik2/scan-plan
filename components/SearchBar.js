@@ -1,6 +1,8 @@
 import React from "react";
 import { StyleSheet, View, TextInput } from "react-native";
-import { EvilIcons } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
+
+import { globalStyles } from "../styles/main";
 
 export default function SearchBar({ data, setFilteredData }) {
   const searchFilter = userInput => {
@@ -15,16 +17,17 @@ export default function SearchBar({ data, setFilteredData }) {
 
   return (
     <View style={styles.searchBar}>
+    <Feather
+        name="search"
+        size={25}
+        color="#fff"
+        style={styles.searchIcon}
+      />
+      <View style={globalStyles.divider}></View>
       <TextInput
         style={styles.input}
         placeholder="Search for location..."
         onChangeText={userInput => searchFilter(userInput)}
-      />
-      <EvilIcons
-        name="search"
-        size={35}
-        color="#fff"
-        style={styles.searchIcon}
       />
     </View>
   );
@@ -35,22 +38,24 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    borderWidth: 1,
-    borderColor: "#fff",
-    borderRadius: 25,
-    marginLeft: 15,
-    marginRight: 15
+    borderRadius: 13,
+    marginTop: 10,
+    marginBottom: 23,
+    width: 330,
+    height: 46,
+    backgroundColor: '#323332',
+
   },
   input: {
     flex: 1,
-    fontFamily: "OpenSans-Regular",
-    fontSize: 20,
-    margin: 10,
+    fontFamily: "BalooTamma2-Regular",
+    color: '#fff',
+    fontSize: 21,
     width: 200,
+    paddingTop: 10,
     paddingLeft: 5,
-    color: "#fff",
   },
   searchIcon: {
-    paddingRight: 10
+    paddingLeft: 15
   }
 });

@@ -9,8 +9,8 @@ import MenuDrawer from "./routes/MenuDrawer";
 
 const cacheFonts = () =>
   Font.loadAsync({
-    "OpenSans-ExtraBold": require("./assets/fonts/OpenSans-ExtraBold.ttf"),
-    "OpenSans-Regular": require("./assets/fonts/OpenSans-Regular.ttf"),
+    "BalooTamma2-SemiBold": require("./assets/fonts/BalooTamma2-SemiBold.ttf"),
+    "BalooTamma2-Regular": require("./assets/fonts/BalooTamma2-Regular.ttf"),
   });
 
 export default function App() {

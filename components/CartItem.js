@@ -28,12 +28,12 @@ const styles = StyleSheet.create({
     fontSize: 45,
   },
   cartNumber: {
-    fontFamily: "OpenSans-Regular",
+    fontFamily: "BalooTamma2-Regular",
     color: "lime",
     fontSize: 20,
   },
   cartLocation: {
-    fontFamily: "OpenSans-Regular",
+    fontFamily: "BalooTamma2-Regular",
     color: "#fff",
     fontSize: 15,
   },

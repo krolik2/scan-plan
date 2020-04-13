@@ -8,7 +8,8 @@ export default function EmptyCart() {
     <View style={globalStyles.container}>
       <View style={styles.emptyCartContainer}>
         <Text style={globalStyles.title}>
-          Your cart is empty, add items from the list.
+          {`Your cart is empty,
+add items from the list.`}
         </Text>
       </View>
     </View>
@@ -18,6 +19,7 @@ export default function EmptyCart() {
 const styles = StyleSheet.create({
   emptyCartContainer: {
     flex: 1,
+    width: 330,
     justifyContent: "center",
   },
 });
