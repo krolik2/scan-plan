@@ -9,18 +9,18 @@ import {
   Button,
   TextInput,
   Alert,
-  Picker,
 } from "react-native";
 import { globalStyles } from "../styles/main";
 import { CartContext } from "../contexts/CartContext";
-import ContainerPicker from "../components/ContainerPicker";
+import PickerComponent from "../components/PickerComponent";
 import ButtonComponent from "../components/ButtonComponent";
+import Header from "../components/Header";
 
 export default function LocationDetails({ route, navigation }) {
   const { name } = route.params;
   const { url } = route.params;
   const { containers, setContainers } = useContext(CartContext);
-  const [containerId, setContainerId] = useState("");
+  const [containerId, setContainerId] = useState(1);
 
   const moveToHomeScreen = () => {
     navigation.goBack();
@@ -75,13 +75,17 @@ export default function LocationDetails({ route, navigation }) {
       }}
     >
       <View style={globalStyles.container}>
+        <Header title="List Details" isHome={false} navigation={navigation} />
         <View style={styles.body}>
           <View style={styles.qrContainer}>
             <Text style={styles.locationText}>{name}</Text>
-            <Image source={url}></Image>
+            <Image style={styles.imageBorder} source={url}></Image>
           </View>
           <View style={styles.controlsContainer}>
-            <ContainerPicker />
+            <PickerComponent
+              containerId={containerId}
+              setContainerId={setContainerId}
+            />
             <ButtonComponent text="add location" onPress={isNumberInRange} />
           </View>
         </View>
@@ -127,49 +131,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#323332",
     borderRadius: 13,
   },
+  imageBorder: {
+    borderRadius: 13,
+  },
 });
-
-{
-  /* <View style={styles.body}>
-          <View style={styles.containerNumberInputArea}>
-            <Text style={globalStyles.title}>Enter container number (1 - 6):</Text>
-            <View style={styles.containerNumber}>
-              <TextInput
-                style={styles.containerNumberInput}
-                keyboardType="numeric"
-                onChangeText={(data) => numbersOnly(data)}
-                value={containerId}
-              />
-            </View>
-          </View>
-        </View> */
-}
-{
-  /* <View>
-          <Button
-            title="assign location to container"
-            onPress={() => isNumberInRange()}
-          />
-        </View> */
-}
-
-// containerNumber: {
-//   backgroundColor: "#383E3E",
-//   height: 40,
-//   width: 40,
-//   marginLeft: 10,
-//   alignItems: "center",
-// },
-// containerNumberInput: {
-//   fontSize: 25,
-//   fontFamily: "BalooTamma2-Regular",
-//   color: "#fff",
-// },
-// containerNumberInputArea: {
-//   alignItems: "center",
-//   flexDirection: "row",
-//   justifyContent: "center",
-// },
-// body: {
-//   flex: 2,
-// },

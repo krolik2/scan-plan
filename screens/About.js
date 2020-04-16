@@ -1,17 +1,12 @@
-import React, { useState } from "react";
-import {
-  StyleSheet,
-  View,
-  Keyboard,
-  Text,
-  TouchableWithoutFeedback
-} from "react-native";
-import { globalStyles } from '../styles/main'
+import React from "react";
+import { View } from "react-native";
+import { globalStyles } from "../styles/main";
+import Header from "../components/Header";
 
 export default function Homer() {
-    return(
-        <View style={globalStyles.container}>
-            <Text>About</Text>
-        </View>
-    )
+  return (
+    <View style={globalStyles.container}>
+      <Header title="about" isHome={true} />
+    </View>
+  );
 }

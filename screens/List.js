@@ -13,7 +13,8 @@ import { Feather } from "@expo/vector-icons";
 import { globalStyles } from "../styles/main";
 import data from "../data";
 import SearchBar from "../components/SearchBar";
-import NavigationBar from '../components/NavigationBar';
+import NavigationBar from "../components/NavigationBar";
+import Header from "../components/Header";
 
 export default function List({ navigation }) {
   const [filteredData, setFilteredData] = useState(data);
@@ -25,6 +26,7 @@ export default function List({ navigation }) {
       }}
     >
       <View style={globalStyles.container}>
+        <Header title="list" isHome={true} />
         <SearchBar data={data} setFilteredData={setFilteredData} />
         <FlatList
           data={filteredData}

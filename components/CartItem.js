@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-} from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 
 export default function CartItem({ container }) {
@@ -24,17 +20,17 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   cartIcon: {
-    color: "#fff",
+    color: "#323332",
     fontSize: 45,
   },
   cartNumber: {
     fontFamily: "BalooTamma2-Regular",
-    color: "lime",
+    color: "#323332",
     fontSize: 20,
   },
   cartLocation: {
     fontFamily: "BalooTamma2-Regular",
-    color: "#fff",
+    color: "#323332",
     fontSize: 15,
   },
 });
