@@ -1,21 +1,31 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
 import { Feather } from "@expo/vector-icons";
 
-export default function NavigationBar() {
+export default function NavigationBar({ navigation }) {
   return (
     <View style={styles.navigationBarContainer}>
       <View style={styles.iconsContainer}>
-        <Feather name="menu" size={20} color="#fff" style={styles.menuIcon} />
+        <TouchableOpacity
+          style={styles.menuIcon}
+          onPress={() => navigation.openDrawer()}
+        >
+          <Feather name="menu" size={20} color="#fff" />
+        </TouchableOpacity>
         <View style={styles.divider}></View>
         <View style={styles.placeHolder}></View>
-        <Feather
-          name="shopping-cart"
-          size={20}
-          color="#fff"
+        <TouchableOpacity
           style={styles.cartIcon}
-        />
-        <Feather name="list" size={20} color="#fff" style={styles.listIcon} />
+          onPress={() => navigation.navigate("Cart")}
+        >
+          <Feather name="shopping-cart" size={20} color="#fff" />
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.listIcon}
+          onPress={() => navigation.navigate("List")}
+        >
+          <Feather name="list" size={20} color="#fff" />
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -27,6 +37,11 @@ const styles = StyleSheet.create({
     height: 69,
     borderRadius: 13,
     backgroundColor: "#323332",
+    position: "absolute",
+    bottom: 0,
+    left: "50%",
+    marginLeft: -165,
+    marginBottom: 16,
   },
   iconsContainer: {
     flex: 1,
@@ -46,7 +61,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   placeHolder: {
-      flex: 2
+    flex: 2,
   },
   divider: {
     borderLeftWidth: 1,

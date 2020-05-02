@@ -13,7 +13,6 @@ import { Feather } from "@expo/vector-icons";
 import { globalStyles } from "../styles/main";
 import data from "../data";
 import SearchBar from "../components/SearchBar";
-import NavigationBar from "../components/NavigationBar";
 import Header from "../components/Header";
 
 export default function List({ navigation }) {
@@ -41,7 +40,6 @@ export default function List({ navigation }) {
             </TouchableOpacity>
           )}
         />
-        <NavigationBar />
       </View>
     </TouchableWithoutFeedback>
   );

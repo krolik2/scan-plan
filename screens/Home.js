@@ -12,7 +12,6 @@ export default function Home() {
       <Header title="cart" isHome={true} />
       <Image source={require("../assets/img/cart-img.png")}></Image>
       <Cart />
-      {/* <NavigationBar /> */}
     </View>
   );
 }
