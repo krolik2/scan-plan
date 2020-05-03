@@ -22,9 +22,7 @@ by Mateusz Królikowski.`}
         </Text>
         <TouchableHighlight
           onPress={() =>
-            Linking.openURL(
-              "mailto:mailto@krolikmat@gmail.com?subject=scan-plan"
-            )
+            Linking.openURL("mailto:krolikmat@gmail.com?subject=scan-plan")
           }
         >
           <Text style={globalStyles.link}>krolikmat@gmail.com</Text>
