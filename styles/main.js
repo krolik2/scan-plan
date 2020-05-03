@@ -14,10 +14,22 @@ export const globalStyles = StyleSheet.create({
     fontSize: 30,
     color: "#323332",
   },
+  subTitle: {
+    fontFamily: "BalooTamma2-Regular",
+    fontSize: 25,
+    color: "#323332",
+    marginBottom: 15,
+  },
   listText: {
     fontFamily: "BalooTamma2-Regular",
     fontSize: 20,
     color: "#323332",
+  },
+  link: {
+    fontFamily: "BalooTamma2-Regular",
+    fontSize: 20,
+    color: "#0000EE",
+    marginBottom: 5,
   },
   divider: {
     borderLeftWidth: 1,
@@ -25,5 +37,10 @@ export const globalStyles = StyleSheet.create({
     height: 23,
     marginLeft: 14,
     marginRight: 8,
+  },
+  textContainer: {
+    flex: 1,
+    width: 330,
+    justifyContent: "center",
   },
 });

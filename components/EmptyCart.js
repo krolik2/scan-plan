@@ -1,12 +1,13 @@
 import React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Image } from "react-native";
 
 import { globalStyles } from "../styles/main";
 
 export default function EmptyCart() {
   return (
     <View style={globalStyles.container}>
-      <View style={styles.emptyCartContainer}>
+      <Image source={require("../assets/img/empty-cart.png")} />
+      <View style={globalStyles.textContainer}>
         <Text style={globalStyles.title}>
           {`Your cart is empty,
 add items from the list.`}
@@ -15,11 +16,3 @@ add items from the list.`}
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  emptyCartContainer: {
-    flex: 1,
-    width: 330,
-    justifyContent: "center",
-  },
-});

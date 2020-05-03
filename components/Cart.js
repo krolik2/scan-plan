@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Image } from "react-native";
 
 import { CartContext } from "../contexts/CartContext";
 import { globalStyles } from "../styles/main";
@@ -16,6 +16,12 @@ export default function Cart() {
 
   return containers.length > 0 ? (
     <View style={globalStyles.container}>
+      <View style={styles.imgContainer}>
+        <Image
+          style={styles.cartImg}
+          source={require("../assets/img/cart.png")}
+        />
+      </View>
       <View style={styles.buttonContainer}>
         <ButtonComponent text="clear cart" onPress={clearCart} />
       </View>
@@ -32,6 +38,7 @@ export default function Cart() {
 
 const styles = StyleSheet.create({
   cartsContainer: {
+    marginTop: 5,
     flex: 1,
     flexDirection: "row",
     flexWrap: "wrap",
@@ -39,5 +46,11 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     marginTop: 5,
+  },
+  cartImg: {
+    alignSelf: "flex-start",
+    height: 200,
+    resizeMode: "contain",
+    marginBottom: 15,
   },
 });

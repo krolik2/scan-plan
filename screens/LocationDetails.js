@@ -91,7 +91,7 @@ export default function LocationDetails({ route, navigation }) {
         </View>
         <Image
           style={styles.detailImg}
-          source={require("../assets/img/details-img.png")}
+          source={require("../assets/img/details.png")}
         ></Image>
       </View>
     </TouchableWithoutFeedback>
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   qrContainer: {
     width: 175,
     height: 220,
-    marginLeft: 4,
+    marginLeft: 3,
     marginRight: 6,
     alignItems: "center",
     justifyContent: "space-between",
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     height: 175,
     justifyContent: "space-between",
     alignItems: "center",
-    marginLeft: 5,
+    margin: 5,
   },
   locationText: {
     fontFamily: "BalooTamma2-Regular",
@@ -122,16 +122,16 @@ const styles = StyleSheet.create({
   body: {
     width: 331,
     marginTop: 10,
-    marginBottom: 55,
+    marginBottom: 10,
     padding: 10,
-    paddingBottom: 15,
     flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
     backgroundColor: "#323332",
     borderRadius: 13,
   },
   imageBorder: {
     borderRadius: 13,
+  },
+  detailImg: {
+    transform: [{ scale: 0.8 }],
   },
 });
