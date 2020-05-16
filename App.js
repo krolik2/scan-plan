@@ -3,9 +3,11 @@ import React, { useState } from "react";
 import * as Font from "expo-font";
 import { AppLoading } from "expo";
 import { NavigationContainer } from "@react-navigation/native";
+import { SafeAreaView } from "react-native";
 
 import CartContextProvider from "./contexts/CartContext";
 import MenuDrawer from "./routes/MenuDrawer";
+import { globalStyles } from "./styles/main";
 
 const cacheFonts = () =>
   Font.loadAsync({
@@ -18,11 +20,13 @@ export default function App() {
 
   if (fontsLoaded) {
     return (
-      <CartContextProvider>
-        <NavigationContainer>
-          <MenuDrawer />
-        </NavigationContainer>
-      </CartContextProvider>
+      <SafeAreaView style={globalStyles.AndroidSafeArea}>
+        <CartContextProvider>
+          <NavigationContainer>
+            <MenuDrawer />
+          </NavigationContainer>
+        </CartContextProvider>
+      </SafeAreaView>
     );
   } else {
     return (

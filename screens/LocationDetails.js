@@ -26,10 +26,6 @@ export default function LocationDetails({ route, navigation }) {
     navigation.goBack();
   };
 
-  const numbersOnly = (data) => {
-    return setContainerId(data.replace(/[^0-9]/gi, ""));
-  };
-
   const isNumberInRange = () => {
     const number = parseInt(containerId);
     return number > 0 && number <= 6 ? checkIfIdTaken() : numberNotInRange();
@@ -50,7 +46,7 @@ export default function LocationDetails({ route, navigation }) {
       ? Alert.alert(
           "Container already exists!",
           `Container with id: ${containerId} has already been added. Please choose different number`,
-          [{ text: "okay", onPress: () => setContainerId(null) }]
+          [{ text: "okay", onPress: () => setContainerId(1) }]
         )
       : addNewContainer();
   };

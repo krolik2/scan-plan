@@ -21,10 +21,10 @@ export default function PickerComponent({ containerId, setContainerId }) {
 
 const styles = StyleSheet.create({
   picker: {
-    paddingLeft: 15,
+    paddingLeft: 5,
     backgroundColor: "#fff",
     borderRadius: 13,
     height: 50,
-    width: 120,
+    width: 80,
   },
 });
