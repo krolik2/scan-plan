@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     fontFamily: "BalooTamma2-Regular",
     color: "#fff",
-    fontSize: 21,
+    fontSize: 20,
     lineHeight: 46,
     width: 330,
     height: 46,

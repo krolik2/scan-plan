@@ -3,8 +3,9 @@ import { StyleSheet, View, Picker } from "react-native";
 
 export default function PickerComponent({ containerId, setContainerId }) {
   return (
-    <View style={styles.picker}>
+    <View style={styles.pickerContainer}>
       <Picker
+        mode="dropdown"
         selectedValue={containerId}
         onValueChange={(itemValue) => setContainerId(itemValue)}
       >
@@ -20,11 +21,14 @@ export default function PickerComponent({ containerId, setContainerId }) {
 }
 
 const styles = StyleSheet.create({
-  picker: {
-    paddingLeft: 5,
-    backgroundColor: "#fff",
+  pickerContainer: {
     borderRadius: 13,
     height: 50,
-    width: 80,
+    width: 120,
+    backgroundColor: "#fff",
+  },
+  picker: {
+    height: 50,
+    width: 120,
   },
 });
