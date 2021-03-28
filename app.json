@@ -3,16 +3,11 @@
     "name": "Scan Plan",
     "slug": "scan-plan",
     "privacy": "public",
-    "sdkVersion": "36.0.0",
     "android": {
       "versionCode": 1,
       "package": "com.krolik2.scanplan"
     },
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
+    "platforms": ["ios", "android", "web"],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -24,9 +19,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.krolik2.scanplan",

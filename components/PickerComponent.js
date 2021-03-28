@@ -1,5 +1,6 @@
 import React from "react";
-import { StyleSheet, View, Picker } from "react-native";
+import { Picker } from "@react-native-community/picker";
+import { StyleSheet, View } from "react-native";
 
 export default function PickerComponent({ containerId, setContainerId }) {
   return (

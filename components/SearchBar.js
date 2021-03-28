@@ -4,15 +4,14 @@ import { Feather } from "@expo/vector-icons";
 
 import { globalStyles } from "../styles/main";
 
-export default function SearchBar({ data, setFilteredData }) {
+export default function SearchBar({ listDataCopy, setListData }) {
   const searchFilter = (userInput) => {
-    const codesData = data.filter((item) => {
-      const itemData = `${item.name.toUpperCase()}`;
+    const newData = listDataCopy.filter((item) => {
+      const itemData = item.name.toUpperCase();
       const userInputData = userInput.toUpperCase();
-
       return itemData.indexOf(userInputData) !== -1;
     });
-    setFilteredData(codesData);
+    setListData(newData);
   };
 
   return (
@@ -22,6 +21,7 @@ export default function SearchBar({ data, setFilteredData }) {
       <TextInput
         style={styles.input}
         placeholder="Search for location..."
+        placeholderTextColor="#f4f4f4"
         onChangeText={(userInput) => searchFilter(userInput)}
       />
     </View>

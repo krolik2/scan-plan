@@ -16,7 +16,8 @@ import SearchBar from "../components/SearchBar";
 import Header from "../components/Header";
 
 export default function List({ navigation }) {
-  const [filteredData, setFilteredData] = useState(data);
+  const [listData, setListData] = useState(data);
+  const [listDataCopy] = useState(data);
 
   return (
     <TouchableWithoutFeedback
@@ -26,9 +27,13 @@ export default function List({ navigation }) {
     >
       <View style={globalStyles.container}>
         <Header title="list" isHome={true} />
-        <SearchBar data={data} setFilteredData={setFilteredData} />
+        <SearchBar
+          listData={listData}
+          setListData={setListData}
+          listDataCopy={listDataCopy}
+        />
         <FlatList
-          data={filteredData}
+          data={listData}
           renderItem={({ item }) => (
             <TouchableOpacity
               onPress={() => navigation.navigate("Location Details", item)}

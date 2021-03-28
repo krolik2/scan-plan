@@ -9,7 +9,7 @@ export default function Header({ title, isHome, navigation }) {
       {isHome ? null : (
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <View style={styles.backBtn}>
-            <Ionicons name="md-arrow-round-back" size={30} />
+            <Ionicons name="arrow-back-outline" size={30} />
           </View>
         </TouchableOpacity>
       )}
