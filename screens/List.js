@@ -27,11 +27,7 @@ export default function List({ navigation }) {
     >
       <View style={globalStyles.container}>
         <Header title="list" isHome={true} />
-        <SearchBar
-          listData={listData}
-          setListData={setListData}
-          listDataCopy={listDataCopy}
-        />
+        <SearchBar setListData={setListData} listDataCopy={listDataCopy} />
         <FlatList
           data={listData}
           renderItem={({ item }) => (
